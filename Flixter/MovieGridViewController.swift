@@ -36,7 +36,7 @@ class MovieGridViewController: UIViewController, UICollectionViewDataSource, UIC
                 self.movies = dataDictionary["results"] as! [[String: Any]]
                 // TODO: Store the movies in a property to use elsewhere
                 self.collectionView.reloadData()
-                print(self.movies)
+                //print(self.movies)
                 
                 
             }
@@ -64,6 +64,20 @@ class MovieGridViewController: UIViewController, UICollectionViewDataSource, UIC
         return cell
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //Find the selected movie
+        let cell = sender as! UICollectionViewCell
+        let indexPath = collectionView.indexPath(for: cell)!
+        let movie = movies[indexPath.item]
+        
+        //Pass the seleccted movie to the details view controller
+        let detailsViewController = segue.destination as! MovieDetailsViewController
+        
+        detailsViewController.movie = movie
+        
+        collectionView.deselectItem(at: indexPath
+                                , animated: true)
+    }
     
     
     
