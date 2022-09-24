@@ -39,7 +39,7 @@ class MovieGridViewController: UIViewController, UICollectionViewDataSource, UIC
                 // TODO: Get the array of movies
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                 
-                print(dataDictionary)
+                //print(dataDictionary)
                 
                 self.movies = dataDictionary["results"] as! [[String: Any]]
                 // TODO: Store the movies in a property to use elsewhere

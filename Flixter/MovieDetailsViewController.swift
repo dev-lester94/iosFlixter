@@ -25,6 +25,12 @@ class MovieDetailsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapBackDropView(_:)))
+        
+        backDropView.isUserInteractionEnabled = true
+        backDropView.addGestureRecognizer(tapGestureRecognizer)
+        
 
         // Do any additional setup after loading the view.
         
@@ -47,15 +53,21 @@ class MovieDetailsViewController: UIViewController {
         backDropView.af.setImage(withURL: backdropUrl)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func tapBackDropView(_ sender: Any) {
+        
+        //print("got tapped")
+        
+        performSegue(withIdentifier: "watchMovieTrailer", sender: nil)
     }
-    */
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        //print("prepared")
+        
+        let movieTrailerViewController = segue.destination as! MovieTrailerViewController
+        
+        movieTrailerViewController.movie = movie
+        
+        
+    }
 }
